@@ -1,0 +1,9 @@
+#PKG_LIBS = -LC:/Users/maxfi/CMakeBuilds/97bac4d5-db36-a333-b92e-55d1d331f01a/build/Mingw64-Release -lclient -LC:/msys64/mingw64/lib -lgrpc++ -lgrpc -lgpr -lprotobuf -lprotobuf-lite -lgrpc++_reflection -lprotoc  $(SHLIB_PTHREAD_FLAGS)
+#PKG_CPPFLAGS = -IC:/Users/maxfi/source/repos/RGRPC/src  $(SHLIB_PTHREAD_FLAGS)
+#SHLIB_PTHREAD_FLAGS = -pthread
+#PKG_CXXFLAGS = -static-libstdc++ -static-libgcc
+
+CXX_STD = CXX11
+PKG_LIBS = `pkg-config --libs grpc++`
+PKG_CXXFLAGS = `pkg-config --cflags grpc++`
+PKG_CPPFLAGS="-D_WIN32_WINNT=0x600"
