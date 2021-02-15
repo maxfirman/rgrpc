@@ -34,3 +34,6 @@ data.grpc.pb.cc
 data.grpc.pb.h
 data.pb.cc
 data.pb.h
+
+RcppExports.cpp
+RcppExports.R
