@@ -10,7 +10,9 @@ COPY . /rgrpc
 
 RUN cd rgrpc/src && protoc -I=. --cpp_out=. --grpc_out=. --plugin=protoc-gen-grpc=/usr/bin/grpc_cpp_plugin data.proto
 
-RUN R CMD build && R CMD INSTALL --no-multiarch --build rgrpc
+RUN which Rscript
+
+RUN Rscript -e 'Rcpp::compileAttributes(pkgdir = "rgrpc")' && R CMD build && R CMD INSTALL --no-multiarch rgrpc
 
 RUN cd rgrpc/server && \
   g++ -std=gnu++11 -DNDEBUG `pkg-config --cflags grpc++ protobuf` -fpic  -g -O2 -g  -c server.cpp -o server.o && \
