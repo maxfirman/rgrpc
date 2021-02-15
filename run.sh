@@ -1,2 +1,2 @@
 ./rgrpc/server/server.out &
-R -e 'library("rgrpc");rgrpc::rcpp_hello_world()'
+R -e 'library("rgrpc");rgrpc::get_data("hello")'

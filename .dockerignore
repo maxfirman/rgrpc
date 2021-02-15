@@ -30,5 +30,7 @@ local/
 docker/*sh
 docker/*/*.sh
 
-src/client.cpp
-src/RCppExports.cpp
+data.grpc.pb.cc
+data.grpc.pb.h
+data.pb.cc
+data.pb.h

@@ -29,3 +29,8 @@ local/
 ## docker helpers
 docker/*sh
 docker/*/*.sh
+
+data.grpc.pb.cc
+data.grpc.pb.h
+data.pb.cc
+data.pb.h

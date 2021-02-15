@@ -5,19 +5,20 @@
 
 using namespace Rcpp;
 
-// rcpp_hello_world
-int rcpp_hello_world();
-RcppExport SEXP _rgrpc_rcpp_hello_world() {
+// get_data
+DataFrame get_data(std::string& dataset_id);
+RcppExport SEXP _rgrpc_get_data(SEXP dataset_idSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
-    rcpp_result_gen = Rcpp::wrap(rcpp_hello_world());
+    Rcpp::traits::input_parameter< std::string& >::type dataset_id(dataset_idSEXP);
+    rcpp_result_gen = Rcpp::wrap(get_data(dataset_id));
     return rcpp_result_gen;
 END_RCPP
 }
 
 static const R_CallMethodDef CallEntries[] = {
-    {"_rgrpc_rcpp_hello_world", (DL_FUNC) &_rgrpc_rcpp_hello_world, 0},
+    {"_rgrpc_get_data", (DL_FUNC) &_rgrpc_get_data, 1},
     {NULL, NULL, 0}
 };
 
