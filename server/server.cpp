@@ -29,6 +29,7 @@
 using grpc::Server;
 using grpc::ServerBuilder;
 using grpc::ServerContext;
+using grpc::ServerWriter;
 using grpc::Status;
 using data::DataRequest;
 using data::DataResponse;
@@ -40,13 +41,24 @@ using data::Record;
 class DataServiceImpl final : public DataService::Service {
 	Status GetData(ServerContext* context, const DataRequest* request,
 		DataResponse* reply) override {
-		std::cout << "request recieved: " << request->name() << std::endl;
-		std::string prefix("Hello ");
-		for (int i = 0; i < 10; i++) {
+		std::cout << "request recieved: " << request->name() << " " << request->num_records() << std::endl;
+		for (int i = 0; i < request->num_records(); i++) {
 			Record * record = reply->add_records();
 			record->set_int_val(i);
 			record->set_string_val(request->name());
 			record->set_float_val((float)i * 3.142);
+		}
+		return Status::OK;
+	}
+	Status GetDataStream(ServerContext* context, const DataRequest* request, ServerWriter<Record>* writer) override {
+		std::cout << "request recieved: " << request->name() << " " << request->num_records() << std::endl;
+		Record record;
+		for (int i = 0; i < request->num_records(); i++) {
+			Record record;
+			record.set_int_val(i);
+			record.set_string_val(request->name());
+			record.set_float_val((float)i * 3.142);
+			writer->Write(record);
 		}
 		return Status::OK;
 	}

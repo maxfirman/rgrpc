@@ -3,11 +3,13 @@ syntax = "proto3";
 package data;
 
 service DataService {
-  rpc GetData (DataRequest) returns (DataResponse) {}
+    rpc GetData (DataRequest) returns (DataResponse) {};
+    rpc GetDataStream (DataRequest) returns (stream Record) {};
 }
 
 message DataRequest {
     string name = 1;
+    int32 num_records = 2;
 }
 
 message DataResponse {
