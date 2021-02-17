@@ -3,6 +3,10 @@ inst/lib
 src/*.o
 src/*.so
 src/*.dll
+server/*.o
+server/*.so
+server/*.dll
+server/*.exe
 src/symbols.rds
 .Rhistory
 .RData
